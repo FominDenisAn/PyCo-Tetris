@@ -1,9 +1,9 @@
 ```markdown
-# PyCo-Tetris
-
+PyCo-Tetris
+```
 A cooperative Tetris game with a cartoon style, supporting both single-player and multiplayer modes.
 
-## Table of Contents
+# Table of Contents
 - [Features](#features)
 - [Requirements](#requirements)
 - [Installation](#installation)
@@ -13,7 +13,7 @@ A cooperative Tetris game with a cartoon style, supporting both single-player an
 - [Contributing](#contributing)
 - [License](#license)
 
-## Features
+# Features
 - Single-player mode with score tracking.
 - Multiplayer mode supporting two players over a network.
 - Cartoon-style graphics with a unique color scheme.
@@ -21,59 +21,62 @@ A cooperative Tetris game with a cartoon style, supporting both single-player an
 - High score tracking.
 - Start screen and main menu with navigation options.
 
-## Requirements
+# Requirements
 - Python 3.x
 - Pygame library
 - Socket library (for multiplayer mode)
 
-## Installation
-1. **Clone the repository**:
+# Installation
+1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/PyCo-Tetris.git
+   ```
+   ```bash
    cd PyCo-Tetris
    ```
 
-2. **Install dependencies**:
+
+2. Install dependencies:
    - Run the provided script to install all necessary dependencies:
      ```bash
-     python install_dependencies.py
+     python PyCo-install-dependency.py
      ```
 
-3. **Run the game**:
+3. Run the PyCo-Tetris:
    - Start the game by running the main script:
      ```bash
-     python main.py
+     python PyCo-Tetris.py
      ```
 
 ## Usage
-- **Start Screen**: Displays the game logo and instructions. Press any key to proceed to the main menu.
-- **Main Menu**: Choose between Single Player, Multiplayer, High Scores, or Exit.
-  - **Single Player**: Start a game for one player.
-  - **Multiplayer**: Connect to a server or create a game for two players.
-  - **High Scores**: View the highest scores achieved.
-  - **Exit**: Quit the game.
+- Start Screen: Displays the game logo and instructions. Press any key to proceed to the main menu.
+- Main Menu: Choose between Single Player, Multiplayer, High Scores, or Exit.
+  - Single Player: Start a game for one player.
+  - Multiplayer: Connect to a server or create a game for two players.
+  - High Scores: View the highest scores achieved.
+  - Exit: Quit the game.
 
-## Game Modes
-### Single Player
-- **Objective**: Clear as many lines as possible to increase your score.
-- **End Condition**: The game ends when the stack reaches the top of the screen.
+# Game Modes
+# Single Player
+- Objective: Clear as many lines as possible to increase your score.
+- End Condition: The game ends when the stack reaches the top of the screen.
 
-### Multiplayer
-- **Objective**: Cooperate with another player to clear lines and increase the combined score.
-- **End Condition**: The game ends when the stack reaches the top of the screen for either player.
+# Multiplayer
+- Objective: Cooperate with another player to clear lines and increase the combined score.
+- End Condition: The game ends when the stack reaches the top of the screen for either player.
 
-## Controls
-- **Movement**:
+# Controls
+- Movement:
   - Left Arrow: Move left
   - Right Arrow: Move right
   - Down Arrow: Move down
-- **Rotation**:
+- Rotation:
   - Up Arrow: Rotate piece
-- **Pause/Resume**:
+- Pause/Resume:
   - Spacebar: Pause/Resume game
 
-## Contributing
+# Contributing
 Contributions are welcome! Please open an issue or submit a pull request with your changes.
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+# License
+This project is licensed under the MIT License - see the [LICENSE] file for details
