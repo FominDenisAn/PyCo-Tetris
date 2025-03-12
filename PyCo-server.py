@@ -9,7 +9,7 @@ HOST = '127.0.0.1'
 PORT = 65432
 BUFFER_SIZE = 1024
 
-# форма блока
+# Форма блока
 SHAPES = {
     'I': [[1, 1, 1, 1]],
     'J': [[1, 0, 0],
@@ -26,13 +26,15 @@ SHAPES = {
           [0, 1, 1]]
 }
 
-# состояние игры
+# Состояние игры
 grid = [[0 for _ in range(10)] for _ in range(20)]
 current_piece = None
 next_piece = None
-score = 0
+score = [0, 0]  # — это очки игрока 1 и игрока 2 соответственно.
 game_over = False
 clients = []
+player_names = ["Player 1", "Player 2"]
+remaining_time = 120  # Первоначальное оставшееся время составляет 120 секунд.
 
 def new_piece():
     global current_piece, next_piece
@@ -57,19 +59,21 @@ def collision(piece, offset):
     return False
 
 def clear_rows():
-    global score
+    global score, remaining_time
     full_rows = [i for i, row in enumerate(grid) if all(row)]
     for row_index in full_rows:
         del grid[row_index]
         grid.insert(0, [0] * 10)
-    score += {1: 100, 2: 300, 3: 600, 4: 1000}.get(len(full_rows), 100 * len(full_rows))
+        remaining_time += 3  # Каждый раз, когда удаляется строка, время увеличивается на 3 секунды...
+        score[0] += 100  # Предположим, что игрок 1 забивает
+        score[1] += 100  # Предположим, что игрок 2 набирает очки
 
 def game_loop():
     global grid, current_piece, score, game_over
     current_piece = new_piece()
     x, y = 4, 0
 
-    while not game_over:
+    while not game_over and remaining_time > 0:
         time.sleep(0.5)
         if not collision(current_piece, (x, y + 1)):
             y += 1
@@ -84,13 +88,16 @@ def game_loop():
             if collision(current_piece, (x, y)):
                 game_over = True
         broadcast_state()
+        remaining_time -= 1  # Уменьшение на 1 секунду каждые 0,5 секунды
 
 def broadcast_state():
     state = {
         'grid': grid,
         'current_piece': current_piece,
         'score': score,
-        'game_over': game_over
+        'game_over': game_over,
+        'player_names': player_names,
+        'remaining_time': remaining_time
     }
     message = json.dumps(state).encode('utf-8')
     for client in clients:
@@ -114,6 +121,9 @@ def handle_client(client_socket):
                         rotated_piece = rotate_piece(current_piece)
                         if not collision(rotated_piece, (x, y)):
                             current_piece = rotated_piece
+                    broadcast_state()
+                elif action['type'] == 'player_name':
+                    player_names[action['player_id']] = action['name']
                     broadcast_state()
         except Exception as e:
             print(f"Error handling client: {e}")
