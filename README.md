@@ -27,9 +27,9 @@ A cooperative Tetris game with a cartoon style, supporting both single-player an
 - Socket library (for multiplayer mode)
 
 # Installation
-1. Clone the repository:
+1. Clone the repository or download ZiP:
    ```bash
-   git clone https://github.com/yourusername/PyCo-Tetris.git
+   git clone github.com:FominDenisAn/PyCo-Tetris.git
    ```
    ```bash
    cd PyCo-Tetris
